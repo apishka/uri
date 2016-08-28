@@ -1,0 +1,30 @@
+{
+    "name": "apishka/uri",
+    "description": "URI ",
+    "keywords": ["uri", "url", "utils", "manipulation", "modify"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Reykh",
+            "email": "evgeny@reykh.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "apishka/easy-extend": "^1.2.10"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.2.2",
+        "apishka/cs": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Apishka\\Uri\\": "source"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApishkaTest\\Uri\\": "tests"
+        }
+    }
+}
