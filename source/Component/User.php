@@ -1,9 +1,9 @@
 <?php namespace Apishka\Uri\Component;
 
 /**
- * Auth
+ * User
  */
 
-class Auth
+class User
 {
 }
