@@ -1,6 +1,6 @@
 {
     "name": "apishka/uri",
-    "description": "URI ",
+    "description": "URI utils to make work with them easy",
     "keywords": ["uri", "url", "utils", "manipulation", "modify"],
     "license": "MIT",
     "authors": [
