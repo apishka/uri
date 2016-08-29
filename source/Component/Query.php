@@ -6,4 +6,9 @@
 
 class Query
 {
+    /**
+     * Traits
+     */
+
+    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 }

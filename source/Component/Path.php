@@ -6,4 +6,9 @@
 
 class Path
 {
+    /**
+     * Traits
+     */
+
+    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 }
