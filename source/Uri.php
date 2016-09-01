@@ -43,14 +43,17 @@ class Uri
 
         $scheme = (string) $this->getScheme();
         if ($scheme)
-            $result = $scheme . '://';
+            $result = $scheme . ':';
+
+        $host = (string) $this->getHost();
+        if ($host)
+            $result .= '//';
 
         $user = (string) $this->getUser();
         $pass = (string) $this->getPass();
         if ($user && $pass)
             $result .= $user . '@' . $pass . ':';
 
-        $host = (string) $this->getHost();
         if ($host)
             $result .= $host;
 
