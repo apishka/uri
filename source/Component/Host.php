@@ -36,6 +36,17 @@ class Host extends ComponentAbstract
     }
 
     /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_host === '';
+    }
+
+    /**
      * Parse
      *
      * @param string $host
