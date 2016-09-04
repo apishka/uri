@@ -78,6 +78,22 @@ class Query extends ComponentAbstract implements \ArrayAccess
     }
 
     /**
+     * Set multi
+     *
+     * @param array $values
+     *
+     * @return Query
+     */
+
+    public function setMulti(array $values)
+    {
+        foreach ($values as $key => $value)
+            $this->set($key, $value);
+
+        return $this;
+    }
+
+    /**
      * Get
      *
      * @param mixed $key
