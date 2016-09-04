@@ -445,16 +445,29 @@ class Uri
         if (!$this->getPort()->isEmpty() && !$this->getScheme()->isDefaultPort($this->getPort()))
             $uri .= ':' . $this->getPort();
 
+        return $uri . $this->getRelative();
+    }
+
+    /**
+     * Get relative
+     *
+     * @return string
+     */
+
+    public function getRelative()
+    {
+        $relative = '';
+
         if (!$this->getPath()->isEmpty())
-            $uri .= $this->getPath();
+            $relative .= $this->getPath();
 
         if (!$this->getQuery()->isEmpty())
-            $uri .= '?' . $this->getQuery();
+            $relative .= '?' . $this->getQuery();
 
         if (!$this->getFragment()->isEmpty())
-            $uri .= '#' . $this->getFragment();
+            $relative .= '#' . $this->getFragment();
 
-        return $uri;
+        return $relative;
     }
 
     /**
