@@ -6,7 +6,7 @@ use Apishka\Uri\ComponentAbstract;
  * Query
  */
 
-class Query extends ComponentAbstract
+class Query extends ComponentAbstract implements \ArrayAccess
 {
     /**
      * Traits
@@ -20,7 +20,7 @@ class Query extends ComponentAbstract
      * @var string
      */
 
-    private $_query;
+    private $_query = array();
 
     /**
      * Construct
@@ -45,7 +45,7 @@ class Query extends ComponentAbstract
 
     protected function parse($query)
     {
-        $this->_query = $query;
+        parse_str($query, $this->_query);
 
         return $this;
     }
@@ -58,6 +58,112 @@ class Query extends ComponentAbstract
 
     public function __toString()
     {
-        return (string) $this->_query;
+        return (string) http_build_query($this->_query);
+    }
+
+    /**
+     * Set
+     *
+     * @param mixed $key
+     * @param mixed $value
+     *
+     * @return Query
+     */
+
+    public function set($key, $value)
+    {
+        $this->offsetSet($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * Get
+     *
+     * @param mixed $key
+     *
+     * @return mixed
+     */
+
+    public function get($key)
+    {
+        return $this->offsetGet($key);
+    }
+
+    /**
+     * Has
+     *
+     * @param mixed $key
+     *
+     * @return bool
+     */
+
+    public function has($key)
+    {
+        return $this->offsetExists($key);
+    }
+
+    /**
+     * Del
+     *
+     * @param mixed $key
+     *
+     * @return Query
+     */
+
+    public function del($key)
+    {
+        $this->offsetUnset($key);
+
+        return $this;
+    }
+
+    /**
+     * Offset exists
+     *
+     * @param mixed $offset
+     *
+     * @return bool
+     */
+
+    public function offsetExists($offset)
+    {
+        return isset($this->_query[$offset]);
+    }
+
+    /**
+     * Offset get
+     *
+     * @param mixed $offset
+     *
+     * @return mixed
+     */
+
+    public function offsetGet($offset)
+    {
+        return $this->_query[$offset];
+    }
+
+    /**
+     * Offset set
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+
+    public function offsetSet($offset, $value)
+    {
+        $this->_query[$offset] = $value;
+    }
+
+    /**
+     * Offset unset
+     *
+     * @param mixed $offset
+     */
+
+    public function offsetUnset($offset)
+    {
+        unset($this->_query[$offset]);
     }
 }

@@ -323,4 +323,35 @@ class Uri
 
         return $uri;
     }
+
+    /**
+     * Set query param
+     *
+     * @param mixed $key
+     * @param mixed $value
+     *
+     * @return Uri
+     */
+
+    public function setQueryParam($key, $value)
+    {
+        $this->getQuery()->set($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * Del query param
+     *
+     * @param mixed $key
+     *
+     * @return Uri
+     */
+
+    public function delQueryParam($key)
+    {
+        $this->getQuery()->del($key);
+
+        return $this;
+    }
 }
