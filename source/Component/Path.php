@@ -45,7 +45,7 @@ class Path extends ComponentAbstract
 
     protected function parse($path)
     {
-        $this->_path = $path;
+        $this->_path = (string) $path;
 
         return $this;
     }
@@ -59,5 +59,16 @@ class Path extends ComponentAbstract
     public function __toString()
     {
         return (string) $this->_path;
+    }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_path === '';
     }
 }

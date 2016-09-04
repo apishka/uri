@@ -182,4 +182,15 @@ class Query extends ComponentAbstract implements \ArrayAccess
     {
         unset($this->_query[$offset]);
     }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return empty($this->_query);
+    }
 }

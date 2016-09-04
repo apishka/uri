@@ -28,4 +28,12 @@ abstract class ComponentAbstract
     {
         $this->_options = $options;
     }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    abstract public function isEmpty();
 }

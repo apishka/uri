@@ -193,6 +193,24 @@ class Uri
     }
 
     /**
+     * Set scheme
+     *
+     * @param mixed $scheme
+     *
+     * @return Scheme
+     */
+
+    public function setScheme($scheme)
+    {
+        $this->_scheme = ($scheme instanceof Scheme)
+            ? $scheme
+            : Scheme::apishka($scheme, $this->_options['scheme'])
+        ;
+
+        return $this;
+    }
+
+    /**
      * Get host
      *
      * @return Host
@@ -201,6 +219,24 @@ class Uri
     public function getHost()
     {
         return $this->_host;
+    }
+
+    /**
+     * Set host
+     *
+     * @param mixed $host
+     *
+     * @return Host
+     */
+
+    public function setHost($host)
+    {
+        $this->_host = ($host instanceof Host)
+            ? $host
+            : Host::apishka($host, $this->_options['host'])
+        ;
+
+        return $this;
     }
 
     /**
@@ -215,6 +251,24 @@ class Uri
     }
 
     /**
+     * Set user
+     *
+     * @param mixed $user
+     *
+     * @return User
+     */
+
+    public function setUser($user)
+    {
+        $this->_user = ($user instanceof User)
+            ? $user
+            : User::apishka($user, $this->_options['user'])
+        ;
+
+        return $this;
+    }
+
+    /**
      * Get pass
      *
      * @return Pass
@@ -223,6 +277,24 @@ class Uri
     public function getPass()
     {
         return $this->_pass;
+    }
+
+    /**
+     * Set pass
+     *
+     * @param mixed $pass
+     *
+     * @return Pass
+     */
+
+    public function setPass($pass)
+    {
+        $this->_pass = ($pass instanceof Pass)
+            ? $pass
+            : Pass::apishka($pass, $this->_options['pass'])
+        ;
+
+        return $this;
     }
 
     /**
@@ -237,6 +309,24 @@ class Uri
     }
 
     /**
+     * Set port
+     *
+     * @param mixed $port
+     *
+     * @return Port
+     */
+
+    public function setPort($port)
+    {
+        $this->_port = ($port instanceof Port)
+            ? $port
+            : Port::apishka($port, $this->_options['port'])
+        ;
+
+        return $this;
+    }
+
+    /**
      * Get path
      *
      * @return Path
@@ -245,6 +335,24 @@ class Uri
     public function getPath()
     {
         return $this->_path;
+    }
+
+    /**
+     * Set path
+     *
+     * @param mixed $path
+     *
+     * @return Path
+     */
+
+    public function setPath($path)
+    {
+        $this->_path = ($path instanceof Path)
+            ? $path
+            : Path::apishka($path, $this->_options['path'])
+        ;
+
+        return $this;
     }
 
     /**
@@ -259,6 +367,24 @@ class Uri
     }
 
     /**
+     * Set query
+     *
+     * @param mixed $query
+     *
+     * @return Query
+     */
+
+    public function setQuery($query)
+    {
+        $this->_query = ($query instanceof Query)
+            ? $query
+            : Query::apishka($query, $this->_options['query'])
+        ;
+
+        return $this;
+    }
+
+    /**
      * Get fragment
      *
      * @return Fragment
@@ -267,6 +393,24 @@ class Uri
     public function getFragment()
     {
         return $this->_fragment;
+    }
+
+    /**
+     * Set fragment
+     *
+     * @param mixed $fragment
+     *
+     * @return Fragment
+     */
+
+    public function setFragment($fragment)
+    {
+        $this->_fragment = ($fragment instanceof Fragment)
+            ? $fragment
+            : Fragment::apishka($fragment, $this->_options['fragment'])
+        ;
+
+        return $this;
     }
 
     /**
@@ -279,47 +423,36 @@ class Uri
     {
         $uri = '';
 
-        $scheme = (string) $this->getScheme();
-        if ($scheme)
-            $uri = $scheme . ':';
+        if (!$this->getScheme()->isEmpty())
+            $uri = $this->getScheme() . ':';
 
-        $host = (string) $this->getHost();
-        if ($host)
+        if (!$this->getHost()->isEmpty())
             $uri .= '//';
 
-        $user = (string) $this->getUser();
-        $pass = (string) $this->getPass();
-        if ($user)
+        if (!$this->getUser()->isEmpty())
         {
-            $uri .= $user;
+            $uri .= $this->getUser();
 
-            if ($pass)
-                $uri .= ':' . $pass;
+            if (!$this->getPass()->isEmpty())
+                $uri .= ':' . $this->getPass();
 
             $uri .= '@';
         }
 
-        if ($host)
-            $uri .= $host;
+        if (!$this->getHost()->isEmpty())
+            $uri .= $this->getHost();
 
-        $port = (string) $this->getPort();
-        if ($port)
-        {
-            if (!$this->getScheme()->isDefaultPort($port))
-                $uri .= ':' . $port;
-        }
+        if (!$this->getPort()->isEmpty() && !$this->getScheme()->isDefaultPort($this->getPort()))
+            $uri .= ':' . $this->getPort();
 
-        $path = (string) $this->getPath();
-        if ($path)
-            $uri .= $path;
+        if (!$this->getPath()->isEmpty())
+            $uri .= $this->getPath();
 
-        $query = (string) $this->getQuery();
-        if ($query)
-            $uri .= '?' . $query;
+        if (!$this->getQuery()->isEmpty())
+            $uri .= '?' . $this->getQuery();
 
-        $fragment = (string) $this->getFragment();
-        if ($fragment)
-            $uri .= '#' . $fragment;
+        if (!$this->getFragment()->isEmpty())
+            $uri .= '#' . $this->getFragment();
 
         return $uri;
     }
@@ -336,6 +469,21 @@ class Uri
     public function setQueryParam($key, $value)
     {
         $this->getQuery()->set($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * Set query params
+     *
+     * @param array $values
+     *
+     * @return Uri
+     */
+
+    public function setQueryParams(array $values)
+    {
+        $this->getQuery()->setMulti($values);
 
         return $this;
     }

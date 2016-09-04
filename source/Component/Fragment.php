@@ -45,7 +45,7 @@ class Fragment extends ComponentAbstract
 
     protected function parse($fragment)
     {
-        $this->_fragment = $fragment;
+        $this->_fragment = (string) $fragment;
 
         return $this;
     }
@@ -59,5 +59,16 @@ class Fragment extends ComponentAbstract
     public function __toString()
     {
         return (string) $this->_fragment;
+    }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_fragment === '';
     }
 }

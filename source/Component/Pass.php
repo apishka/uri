@@ -45,7 +45,7 @@ class Pass extends ComponentAbstract
 
     protected function parse($pass)
     {
-        $this->_pass = $pass;
+        $this->_pass = (string) $pass;
 
         return $this;
     }
@@ -59,5 +59,16 @@ class Pass extends ComponentAbstract
     public function __toString()
     {
         return (string) $this->_pass;
+    }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_pass === '';
     }
 }

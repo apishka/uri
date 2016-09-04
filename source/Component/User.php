@@ -45,7 +45,7 @@ class User extends ComponentAbstract
 
     protected function parse($user)
     {
-        $this->_user = $user;
+        $this->_user = (string) $user;
 
         return $this;
     }
@@ -59,5 +59,16 @@ class User extends ComponentAbstract
     public function __toString()
     {
         return (string) $this->_user;
+    }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_user === '';
     }
 }

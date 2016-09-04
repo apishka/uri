@@ -101,6 +101,20 @@ class Scheme extends ComponentAbstract
 
     public function isDefaultPort($port)
     {
-        return $this->getDefaultPort() !== $port;
+        if ($this->getDefaultPort() !== false)
+            return $this->getDefaultPort() == (string) $port;
+
+        return false;
+    }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_scheme === '';
     }
 }

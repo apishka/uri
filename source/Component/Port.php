@@ -60,4 +60,15 @@ class Port extends ComponentAbstract
     {
         return (string) $this->_port;
     }
+
+    /**
+     * Is empty
+     *
+     * @return bool
+     */
+
+    public function isEmpty()
+    {
+        return $this->_port === 0;
+    }
 }
