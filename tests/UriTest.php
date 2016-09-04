@@ -57,6 +57,8 @@ class UriTest extends \PHPUnit_Framework_TestCase
             ['https://яндекс.рф', 'https://яндекс.рф'],
             ['http://example.com:80/path', 'http://example.com/path'],
             ['HTTP://EXAMPLE.COM/path', 'http://example.com/path'],
+            ['?test=xxx', '?test=xxx'],
+            ['#hello', '#hello'],
         );
     }
 }
