@@ -61,4 +61,42 @@ class UriTest extends \PHPUnit_Framework_TestCase
             ['#hello', '#hello'],
         );
     }
+
+    /**
+     * Test add query params
+     */
+
+    public function testAddQueryParams()
+    {
+        $uri = $this->getUri('/some/path');
+        $uri->setQueryParams(
+            array(
+                'param1' => 'value1',
+                'param2' => 'value2',
+            )
+        );
+
+        $this->assertSame(
+            '/some/path?param1=value1&param2=value2',
+            (string) $uri
+        );
+    }
+
+    /**
+     * Test add query params
+     */
+
+    public function testFullUri()
+    {
+        $uri = $this
+            ->getUri('/some/path?with=params')
+            ->setScheme('https')
+            ->setHost('example.com')
+        ;
+
+        $this->assertSame(
+            'https://example.com/some/path?with=params',
+            (string) $uri
+        );
+    }
 }
