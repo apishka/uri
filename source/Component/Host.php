@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Host extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Host
      *
      * @var string
@@ -25,8 +19,8 @@ class Host extends ComponentAbstract
     /**
      * Construct
      *
-     * @param mixed  $host
-     * @param array  $options
+     * @param mixed $host
+     * @param array $options
      */
 
     public function __construct($host, $options = array())

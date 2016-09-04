@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Pass extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Pass
      *
      * @var string

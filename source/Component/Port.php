@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Port extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Port
      *
      * @var string

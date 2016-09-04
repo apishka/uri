@@ -1,13 +1,17 @@
 <?php namespace Apishka\Uri;
 
-use Apishka\Uri\ComponentAbstract;
-
 /**
  * Component abstract
  */
 
 abstract class ComponentAbstract
 {
+    /**
+     * Traits
+     */
+
+    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
+
     /**
      * Options
      *

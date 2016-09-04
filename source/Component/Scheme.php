@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Scheme extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Scheme
      *
      * @var string
@@ -77,8 +71,6 @@ class Scheme extends ComponentAbstract
 
     /**
      * Get default port
-     *
-     * @return void
      */
 
     public function getDefaultPort()

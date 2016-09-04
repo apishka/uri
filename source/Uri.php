@@ -1,13 +1,13 @@
 <?php namespace Apishka\Uri;
 
-use Apishka\Uri\Component\Scheme;
-use Apishka\Uri\Component\Host;
-use Apishka\Uri\Component\User;
-use Apishka\Uri\Component\Pass;
-use Apishka\Uri\Component\Port;
-use Apishka\Uri\Component\Path;
-use Apishka\Uri\Component\Query;
 use Apishka\Uri\Component\Fragment;
+use Apishka\Uri\Component\Host;
+use Apishka\Uri\Component\Pass;
+use Apishka\Uri\Component\Path;
+use Apishka\Uri\Component\Port;
+use Apishka\Uri\Component\Query;
+use Apishka\Uri\Component\Scheme;
+use Apishka\Uri\Component\User;
 
 /**
  * Uri
@@ -86,14 +86,6 @@ class Uri
     private $_fragment = null;
 
     /**
-     * Original uri
-     *
-     * @var string
-     */
-
-    private $_original_uri = null;
-
-    /**
      * Is parsed
      *
      * @var bool
@@ -118,7 +110,20 @@ class Uri
 
     public function __construct($uri, $options = array())
     {
-        $this->_original_uri = $uri;
+        $this->setOptions($options);
+        $this->parse($uri);
+    }
+
+    /**
+     * Set options
+     *
+     * @param array $options
+     *
+     * @return Uri
+     */
+
+    protected function setOptions(array $options)
+    {
         $this->_options = array_replace(
             array(
                 'scheme'   => array(),
@@ -133,7 +138,27 @@ class Uri
             $options
         );
 
-        $this->parse($this->_original_uri);
+        return $this;
+    }
+
+    /**
+     * Apishka from provider
+     *
+     * @param mixed $provider
+     * @param array $options
+     *
+     * @return Uri
+     */
+
+    public function __apishkaFromProvider($provider = null, array $options = array())
+    {
+        if ($provider === null)
+            $provider = Provider\Globals::apishka();
+
+        $this->setOptions($options);
+        $this->parse($provider);
+
+        return $this;
     }
 
     /**
@@ -150,7 +175,7 @@ class Uri
         {
             $this->_is_parsed = true;
 
-            $data = parse_url($uri);
+            $data = parse_url((string) $uri);
             if ($data === false)
                 throw new \InvalidArgumentException('Can\'t parse ' . var_export($uri, true));
 

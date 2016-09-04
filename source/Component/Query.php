@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Query extends ComponentAbstract implements \ArrayAccess
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Query
      *
      * @var string

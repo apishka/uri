@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Fragment extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Fragment
      *
      * @var string

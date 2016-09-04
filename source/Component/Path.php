@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class Path extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * Path
      *
      * @var string

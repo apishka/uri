@@ -9,12 +9,6 @@ use Apishka\Uri\ComponentAbstract;
 class User extends ComponentAbstract
 {
     /**
-     * Traits
-     */
-
-    use \Apishka\EasyExtend\Helper\ByClassNameTrait;
-
-    /**
      * User
      *
      * @var string
