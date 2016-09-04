@@ -18,7 +18,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
 
     protected function getUri($uri)
     {
-        return Uri::apishkaFromUri($uri);
+        return Uri::fromUri($uri);
     }
 
     /**

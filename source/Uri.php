@@ -102,6 +102,17 @@ class Uri
     private $_options = array();
 
     /**
+     * Returns static prefixes
+     *
+     * @return string
+     */
+
+    public function __apishkaGetPrefixes()
+    {
+        return 'from';
+    }
+
+    /**
      * Call static apishka
      *
      * @param array  $data
@@ -111,10 +122,10 @@ class Uri
      * @return mixed
      */
 
-    protected static function __apishkaApishka(array $data, $name, array $arguments)
+    protected static function __apishkaFrom(array $data, $name, array $arguments)
     {
         return (new $data['class']())
-            ->{'__apishka' . $name}(...$arguments)
+            ->{'__apishkaFrom' . $name}(...$arguments)
         ;
     }
 
