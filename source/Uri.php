@@ -254,47 +254,47 @@ class Uri
 
     public function __toString()
     {
-        $result = '';
+        $uri = '';
 
         $scheme = (string) $this->getScheme();
         if ($scheme)
-            $result = $scheme . ':';
+            $uri = $scheme . ':';
 
         $host = (string) $this->getHost();
         if ($host)
-            $result .= '//';
+            $uri .= '//';
 
         $user = (string) $this->getUser();
         $pass = (string) $this->getPass();
         if ($user)
         {
-            $result .= $user;
+            $uri .= $user;
 
             if ($pass)
-                $result .= ':' . $pass;
+                $uri .= ':' . $pass;
 
-            $result .= '@';
+            $uri .= '@';
         }
 
         if ($host)
-            $result .= $host;
+            $uri .= $host;
 
         $port = (string) $this->getPort();
         if ($port)
-            $result .= ':' . $port;
+            $uri .= ':' . $port;
 
         $path = (string) $this->getPath();
         if ($path)
-            $result .= $path;
+            $uri .= $path;
 
         $query = (string) $this->getQuery();
         if ($query)
-            $result .= '?' . $query;
+            $uri .= '?' . $query;
 
         $fragment = (string) $this->getFragment();
         if ($fragment)
-            $result .= '#' . $fragment;
+            $uri .= '#' . $fragment;
 
-        return $result;
+        return $uri;
     }
 }

@@ -23,15 +23,35 @@ class UriTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test is sent
+     *
+     * @dataProvider validUriProvider
      */
 
-    public function testCreation()
+    public function testCreation($expect, $uri)
     {
-        $uri = $this->getUri('http://example.com/');
+        $uri = $this->getUri($uri);
 
         $this->assertSame(
-            'http://example.com/',
+            $expect,
             (string) $uri
+        );
+    }
+
+    /**
+     * Valid uri provider
+     *
+     * @return array
+     */
+
+    public function validUriProvider()
+    {
+        return array(
+            ['http://example.com/', 'http://example.com/'],
+            ['/', '/'],
+            ['', '?#'],
+            ['', '?'],
+            ['', '#'],
+            ['https://яндекс.рф', 'https://яндекс.рф'],
         );
     }
 }
