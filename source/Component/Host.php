@@ -25,7 +25,7 @@ class Host extends ComponentAbstract
     /**
      * Construct
      *
-     * @param string $host
+     * @param mixed  $host
      * @param array  $options
      */
 
@@ -49,13 +49,18 @@ class Host extends ComponentAbstract
     /**
      * Parse
      *
-     * @param string $host
+     * @param mixed $host
      *
      * @return Host this
      */
 
     protected function parse($host)
     {
+        if (is_array($host))
+            $host = implode('.', $host);
+
+        $host = (string) $host;
+
         $this->_host = function_exists('mb_strtolower')
             ? mb_strtolower($host)
             : strtolower($host)

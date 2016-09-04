@@ -91,11 +91,11 @@ class UriTest extends \PHPUnit_Framework_TestCase
         $uri = $this
             ->getUri('/some/path?with=params')
             ->setScheme('https')
-            ->setHost('example.com')
+            ->setHost(['test', 'example.com'])
         ;
 
         $this->assertSame(
-            'https://example.com/some/path?with=params',
+            'https://test.example.com/some/path?with=params',
             (string) $uri
         );
     }
