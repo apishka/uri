@@ -174,7 +174,24 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetUnset($offset)
     {
-        unset($this->_query[$offset]);
+        if (is_array($offset))
+        {
+            $prev = null;
+
+            $curr = &$this->_query;
+            foreach ($offset as $key)
+            {
+                $prev = &$curr;
+                $curr = &$curr[$key];
+            }
+
+            if ($prev !== null)
+                unset($prev[$key]);
+        }
+        else
+        {
+            unset($this->_query[$offset]);
+        }
     }
 
     /**

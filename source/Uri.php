@@ -102,16 +102,20 @@ class Uri
     private $_options = array();
 
     /**
-     * Construct
+     * Call static apishka
      *
-     * @param string $uri
-     * @param array  $options
+     * @param array  $data
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
      */
 
-    public function __construct($uri, $options = array())
+    protected static function __apishkaApishka(array $data, $name, array $arguments)
     {
-        $this->setOptions($options);
-        $this->parse($uri);
+        return (new $data['class']())
+            ->{'__apishka' . $name}(...$arguments)
+        ;
     }
 
     /**
@@ -142,23 +146,37 @@ class Uri
     }
 
     /**
-     * Apishka from provider
+     * From uri
+     *
+     * @param mixed $uri
+     * @param array $options
+     *
+     * @return Uri this
+     */
+
+    protected function __apishkaFromUri($uri, array $options = array())
+    {
+        $this->setOptions($options);
+        $this->parse($uri);
+
+        return $this;
+    }
+
+    /**
+     * From provider
      *
      * @param mixed $provider
      * @param array $options
      *
-     * @return Uri
+     * @return Uri this
      */
 
-    public function __apishkaFromProvider($provider = null, array $options = array())
+    protected function __apishkaFromProvider($provider = null, array $options = array())
     {
         if ($provider === null)
             $provider = Provider\Globals::apishka();
 
-        $this->setOptions($options);
-        $this->parse($provider);
-
-        return $this;
+        return $this->__apishkaFromUri($provider, $options);
     }
 
     /**
