@@ -25,14 +25,17 @@ class UriTest extends \PHPUnit_Framework_TestCase
      * Test is sent
      *
      * @dataProvider validUriProvider
+     *
+     * @param string $uri
+     * @param string $expected
      */
 
-    public function testCreation($expect, $uri)
+    public function testCreation($uri, $expected)
     {
         $uri = $this->getUri($uri);
 
         $this->assertSame(
-            $expect,
+            $expected,
             (string) $uri
         );
     }
@@ -48,11 +51,12 @@ class UriTest extends \PHPUnit_Framework_TestCase
         return array(
             ['http://example.com/', 'http://example.com/'],
             ['/', '/'],
-            ['', '?#'],
-            ['', '?'],
-            ['', '#'],
+            ['?#', ''],
+            ['?', ''],
+            ['#', ''],
             ['https://яндекс.рф', 'https://яндекс.рф'],
-            ['http://example.com/path', 'http://example.com:80/path'],
+            ['http://example.com:80/path', 'http://example.com/path'],
+            ['HTTP://EXAMPLE.COM/path', 'http://example.com/path'],
         );
     }
 }
