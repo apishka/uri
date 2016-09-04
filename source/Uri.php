@@ -281,7 +281,11 @@ class Uri
 
         $port = (string) $this->getPort();
         if ($port)
-            $uri .= ':' . $port;
+        {
+            $port = (int) $port;
+            if ($this->getScheme()->getDefaultPort() !== $port)
+                $uri .= ':' . $port;
+        }
 
         $path = (string) $this->getPath();
         if ($path)
