@@ -6,7 +6,7 @@ use Apishka\Uri\ComponentAbstract;
  * Component abstract
  */
 
-class ComponentAbstract
+abstract class ComponentAbstract
 {
     /**
      * Options
