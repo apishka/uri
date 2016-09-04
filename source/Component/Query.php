@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * Query
  */
 
-class Query
+class Query extends ComponentAbstract
 {
     /**
      * Traits
@@ -24,11 +26,28 @@ class Query
      * Construct
      *
      * @param string $query
+     * @param array  $options
      */
 
-    public function __construct($query)
+    public function __construct($query, $options = array())
+    {
+        $this->setOptions($options);
+        $this->parse($query);
+    }
+
+    /**
+     * Parse
+     *
+     * @param string $query
+     *
+     * @return Query this
+     */
+
+    protected function parse($query)
     {
         $this->_query = $query;
+
+        return $this;
     }
 
     /**

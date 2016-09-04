@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * Port
  */
 
-class Port
+class Port extends ComponentAbstract
 {
     /**
      * Traits
@@ -24,11 +26,28 @@ class Port
      * Construct
      *
      * @param string $port
+     * @param array  $options
      */
 
-    public function __construct($port)
+    public function __construct($port, $options = array())
     {
-        $this->_port = $port;
+        $this->setOptions($options);
+        $this->parse($port);
+    }
+
+    /**
+     * Parse
+     *
+     * @param string $port
+     *
+     * @return Port this
+     */
+
+    protected function parse($port)
+    {
+        $this->_port = (int) $port;
+
+        return $this;
     }
 
     /**

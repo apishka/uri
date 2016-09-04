@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * User
  */
 
-class User
+class User extends ComponentAbstract
 {
     /**
      * Traits
@@ -24,11 +26,28 @@ class User
      * Construct
      *
      * @param string $user
+     * @param array  $options
      */
 
-    public function __construct($user)
+    public function __construct($user, $options = array())
+    {
+        $this->setOptions($options);
+        $this->parse($user);
+    }
+
+    /**
+     * Parse
+     *
+     * @param string $user
+     *
+     * @return User this
+     */
+
+    protected function parse($user)
     {
         $this->_user = $user;
+
+        return $this;
     }
 
     /**

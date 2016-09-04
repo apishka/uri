@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * Fragment
  */
 
-class Fragment
+class Fragment extends ComponentAbstract
 {
     /**
      * Traits
@@ -24,11 +26,28 @@ class Fragment
      * Construct
      *
      * @param string $fragment
+     * @param array  $options
      */
 
-    public function __construct($fragment)
+    public function __construct($fragment, $options = array())
+    {
+        $this->setOptions($options);
+        $this->parse($fragment);
+    }
+
+    /**
+     * Parse
+     *
+     * @param string $fragment
+     *
+     * @return Fragment this
+     */
+
+    protected function parse($fragment)
     {
         $this->_fragment = $fragment;
+
+        return $this;
     }
 
     /**

@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * Scheme
  */
 
-class Scheme
+class Scheme extends ComponentAbstract
 {
     /**
      * Traits
@@ -21,22 +23,15 @@ class Scheme
     private $_scheme = null;
 
     /**
-     * Original scheme
-     *
-     * @var string
-     */
-
-    private $_original_scheme = null;
-
-    /**
      * Construct
      *
      * @param string $scheme
+     * @param array  $options
      */
 
-    public function __construct($scheme)
+    public function __construct($scheme, $options = array())
     {
-        $this->_original_scheme = $scheme;
+        $this->setOptions($options);
         $this->parse($scheme);
     }
 
@@ -45,7 +40,7 @@ class Scheme
      *
      * @param string $scheme
      *
-     * @return Scheme
+     * @return Scheme this
      */
 
     protected function parse($scheme)
@@ -94,5 +89,18 @@ class Scheme
             return $ports[$this->_scheme];
 
         return false;
+    }
+
+    /**
+     * Is default port
+     *
+     * @param int $port
+     *
+     * @return bool
+     */
+
+    public function isDefaultPort($port)
+    {
+        return $this->getDefaultPort() !== $port;
     }
 }

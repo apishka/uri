@@ -102,14 +102,37 @@ class Uri
     private $_is_parsed = false;
 
     /**
+     * Options
+     *
+     * @var array
+     */
+
+    private $_options = array();
+
+    /**
      * Construct
      *
      * @param string $uri
+     * @param array  $options
      */
 
-    public function __construct($uri)
+    public function __construct($uri, $options = array())
     {
         $this->_original_uri = $uri;
+        $this->_options = array_replace(
+            array(
+                'scheme'   => array(),
+                'host'     => array(),
+                'port'     => array(),
+                'user'     => array(),
+                'pass'     => array(),
+                'path'     => array(),
+                'query'    => array(),
+                'fragment' => array(),
+            ),
+            $options
+        );
+
         $this->parse($this->_original_uri);
     }
 
@@ -145,14 +168,14 @@ class Uri
                 $data
             );
 
-            $this->_scheme = Scheme::apishka($data['scheme']);
-            $this->_host = Host::apishka($data['host']);
-            $this->_port = Port::apishka($data['port']);
-            $this->_user = User::apishka($data['user']);
-            $this->_pass = Pass::apishka($data['pass']);
-            $this->_path = Path::apishka($data['path']);
-            $this->_query = Query::apishka($data['query']);
-            $this->_fragment = Fragment::apishka($data['fragment']);
+            $this->_scheme = Scheme::apishka($data['scheme'], $this->_options['scheme']);
+            $this->_host = Host::apishka($data['host'], $this->_options['host']);
+            $this->_port = Port::apishka($data['port'], $this->_options['port']);
+            $this->_user = User::apishka($data['user'], $this->_options['user']);
+            $this->_pass = Pass::apishka($data['pass'], $this->_options['pass']);
+            $this->_path = Path::apishka($data['path'], $this->_options['path']);
+            $this->_query = Query::apishka($data['query'], $this->_options['query']);
+            $this->_fragment = Fragment::apishka($data['fragment'], $this->_options['fragment']);
         }
 
         return $this;
@@ -282,8 +305,7 @@ class Uri
         $port = (string) $this->getPort();
         if ($port)
         {
-            $port = (int) $port;
-            if ($this->getScheme()->getDefaultPort() !== $port)
+            if (!$this->getScheme()->isDefaultPort($port))
                 $uri .= ':' . $port;
         }
 

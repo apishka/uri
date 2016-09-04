@@ -1,10 +1,12 @@
 <?php namespace Apishka\Uri\Component;
 
+use Apishka\Uri\ComponentAbstract;
+
 /**
  * Path
  */
 
-class Path
+class Path extends ComponentAbstract
 {
     /**
      * Traits
@@ -24,11 +26,28 @@ class Path
      * Construct
      *
      * @param string $path
+     * @param array  $options
      */
 
-    public function __construct($path)
+    public function __construct($path, $options = array())
+    {
+        $this->setOptions($options);
+        $this->parse($path);
+    }
+
+    /**
+     * Parse
+     *
+     * @param string $path
+     *
+     * @return Path this
+     */
+
+    protected function parse($path)
     {
         $this->_path = $path;
+
+        return $this;
     }
 
     /**
