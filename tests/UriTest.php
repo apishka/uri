@@ -27,6 +27,11 @@ class UriTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $this->getUri('http://example.com/');
+        $uri = $this->getUri('http://example.com/');
+
+        $this->assertSame(
+            'http://example.com/',
+            (string) $uri
+        );
     }
 }
