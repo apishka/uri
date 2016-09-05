@@ -39,7 +39,14 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     protected function parse($query)
     {
-        parse_str($query, $this->_query);
+        if (is_array($query))
+        {
+            $this->_query = $query;
+        }
+        else
+        {
+            parse_str($query, $this->_query);
+        }
 
         return $this;
     }
