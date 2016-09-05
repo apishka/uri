@@ -569,4 +569,19 @@ class Uri
 
         return $this;
     }
+
+    /**
+     * Apply query params
+     *
+     * @param array $values
+     *
+     * @return Uri
+     */
+
+    public function applyQueryParams(array $values)
+    {
+        $this->getQuery()->apply($values);
+
+        return $this;
+    }
 }

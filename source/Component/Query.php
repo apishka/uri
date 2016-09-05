@@ -136,6 +136,31 @@ class Query extends ComponentAbstract implements \ArrayAccess
     }
 
     /**
+     * Apply
+     *
+     * @param array $values
+     *
+     * @return Query
+     */
+
+    public function apply(array $values)
+    {
+        foreach ($values as $key => $value)
+        {
+            if ($value === false)
+            {
+                $this->offsetUnset($key);
+            }
+            else
+            {
+                $this->offsetSet($key, $value);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * Offset exists
      *
      * @param mixed $offset
