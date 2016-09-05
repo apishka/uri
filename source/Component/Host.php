@@ -51,7 +51,7 @@ class Host extends ComponentAbstract
     protected function parse($host)
     {
         if (is_array($host))
-            $host = implode('.', $host);
+            $host = implode('.', array_filter($host));
 
         $host = (string) $host;
 
