@@ -59,7 +59,18 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function __toString()
     {
-        return (string) http_build_query($this->_query);
+        return (string) http_build_query($this->__toArray());
+    }
+
+    /**
+     * To array
+     *
+     * @return array
+     */
+
+    public function __toArray()
+    {
+        return $this->_query;
     }
 
     /**
