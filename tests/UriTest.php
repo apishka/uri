@@ -22,7 +22,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test is sent
+     * Test creation
      *
      * @dataProvider validUriProvider
      *
