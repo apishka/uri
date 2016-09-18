@@ -148,6 +148,43 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test set composite
+     *
+     * @dataProvider providerSetComposite
+     *
+     * @param array  $data
+     * @param array  $key
+     * @param mixed  $value
+     * @param string $expected
+     */
+
+    public function testSetComposite($data, $key, $value, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $query->set($key, $value);
+
+        $this->assertSame(
+            $expected,
+            (string) $query
+        );
+    }
+
+    /**
+     * Provider del composite
+     *
+     * @return array
+     */
+
+    public function providerSetComposite()
+    {
+        return array(
+            ['param[1]=value1&param[2]=value2', ['param', '1'], 'value1.1', 'param%5B1%5D=value1.1&param%5B2%5D=value2'],
+            ['param[1]=value1&param[2]=value2', ['param'], 'value', 'param=value'],
+        );
+    }
+
+    /**
      * Test get
      *
      * @dataProvider providerGet
@@ -384,6 +421,41 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         return array(
             ['param1=value1&param2=value2', 'param3', false],
             ['param1=value1&param2=value2', 'param1', true],
+        );
+    }
+
+    /**
+     * Test has composite
+     *
+     * @dataProvider providerHasComposite
+     *
+     * @param array  $data
+     * @param array  $key
+     * @param string $expected
+     */
+
+    public function testHasComposite($data, $key, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $this->assertSame(
+            $expected,
+            $query->has($key)
+        );
+    }
+
+    /**
+     * Provider del composite
+     *
+     * @return array
+     */
+
+    public function providerHasComposite()
+    {
+        return array(
+            ['param[1]=value1&param[2]=value2', ['param', '1'], true],
+            ['param[1]=value1&param[2]=value2', ['param', 'min'], false],
+            ['param[]=value1&param[]=value2', ['param', '0'], true],
         );
     }
 

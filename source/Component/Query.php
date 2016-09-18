@@ -181,7 +181,9 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetExists($offset)
     {
-        return isset($this->_query[$offset]);
+        $parent = &$this->prepareCompositeParent($offset, $key);
+
+        return isset($parent[$key]);
     }
 
     /**
@@ -194,7 +196,7 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetGet($offset)
     {
-        $parent = $this->prepareCompositeParent($offset, $key);
+        $parent = &$this->prepareCompositeParent($offset, $key);
 
         return $parent[$key] ?? null;
     }
@@ -208,7 +210,9 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetSet($offset, $value)
     {
-        $this->_query[$offset] = $value;
+        $parent = &$this->prepareCompositeParent($offset, $key);
+
+        $parent[$key] = $value;
     }
 
     /**
