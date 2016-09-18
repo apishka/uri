@@ -529,4 +529,39 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             ['param1=value1&param2=value2', ['param3' => 'value3'], 'param1=value1&param2=value2&param3=value3'],
         );
     }
+
+    /**
+     * Test apply
+     *
+     * @dataProvider providerApply
+     *
+     * @param mixed  $data
+     * @param array  $values
+     * @param string $expected
+     */
+
+    public function testApply($data, $values, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $query->apply($values);
+
+        $this->assertSame(
+            $expected,
+            (string) $query
+        );
+    }
+
+    /**
+     * Provider apply
+     *
+     * @return array
+     */
+
+    public function providerApply()
+    {
+        return array(
+            ['param1=value1&param2=value2', ['param1' => false, 'param2' => 'value2.2'], 'param2=value2.2'],
+        );
+    }
 }
