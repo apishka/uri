@@ -194,7 +194,9 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetGet($offset)
     {
-        return $this->_query[$offset] ?? null;
+        $parent = $this->prepareCompositeParent($offset, $key);
+
+        return $parent[$key] ?? null;
     }
 
     /**
@@ -217,24 +219,39 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetUnset($offset)
     {
+        $parent = &$this->prepareCompositeParent($offset, $key);
+
+        if ($parent !== null)
+            unset($parent[$key]);
+    }
+
+    /**
+     * Prepare composite parent
+     *
+     * @param mixed $offset
+     * @param mixed $key
+     *
+     * @return &array
+     */
+
+    protected function &prepareCompositeParent($offset, &$key)
+    {
         if (is_array($offset))
         {
-            $prev = null;
+            $query = null;
 
             $curr = &$this->_query;
             foreach ($offset as $key)
             {
-                $prev = &$curr;
+                $query = &$curr;
                 $curr = &$curr[$key];
             }
 
-            if ($prev !== null)
-                unset($prev[$key]);
+            return $query;
         }
-        else
-        {
-            unset($this->_query[$offset]);
-        }
+
+        $key = $offset;
+        return $this->_query;
     }
 
     /**

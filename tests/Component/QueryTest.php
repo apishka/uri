@@ -202,6 +202,40 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test get composite
+     *
+     * @dataProvider providerGetComposite
+     *
+     * @param array  $data
+     * @param array  $key
+     * @param string $expected
+     */
+
+    public function testGetComposite($data, $key, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $this->assertSame(
+            $expected,
+            $query->get($key)
+        );
+    }
+
+    /**
+     * Provider del composite
+     *
+     * @return array
+     */
+
+    public function providerGetComposite()
+    {
+        return array(
+            ['param[1]=value1&param[2]=value2', ['param', '1'], 'value1'],
+            ['param[1]=value1&param[2]=value2', ['param'], ['1' => 'value1', '2' => 'value2']],
+        );
+    }
+
+    /**
      * Test del
      *
      * @dataProvider providerDel
@@ -256,6 +290,46 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         return array(
             ['param1=value1&param2=value2', 'param3', 'param1=value1&param2=value2'],
             ['param1=value1&param2=value2', 'param1', 'param2=value2'],
+        );
+    }
+
+    /**
+     * Test del composite
+     *
+     * @dataProvider providerDelComposite
+     *
+     * @param array  $data
+     * @param array  $key
+     * @param string $expected
+     */
+
+    public function testDelComposite($data, $key, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $query->del($key);
+
+        $this->assertSame(
+            $expected,
+            (string) $query
+        );
+    }
+
+    /**
+     * Provider del composite
+     *
+     * @return array
+     */
+
+    public function providerDelComposite()
+    {
+        return array(
+            ['param[1]=value1&param[2]=value2', ['param', '1'], 'param%5B2%5D=value2'],
+            ['param[min]=value1&param[max]=value2', ['param'], ''],
+            ['param[min]=value1&param[max]=value2', ['param', 'max'], 'param%5Bmin%5D=value1'],
+            ['param[]=value1&param[]=value2', ['param', 0], 'param%5B1%5D=value2'],
+            ['param=value1', [], 'param=value1'],
+            ['param=value1', ['foo'], 'param=value1'],
         );
     }
 
@@ -344,6 +418,43 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             ['param1=value1&param2=value2', false],
             ['', true],
             [[], true],
+        );
+    }
+
+    /**
+     * Test set mutli
+     *
+     * @dataProvider providerSetMulti
+     *
+     * @param array  $data
+     * @param mixed  $values
+     * @param string $expected
+     */
+
+    public function testSetMulti($data, $values, $expected)
+    {
+        $query = $this->getQuery($data);
+
+        $query->setMulti($values);
+
+        $this->assertSame(
+            $expected,
+            (string) $query
+        );
+    }
+
+    /**
+     * Provider set multi
+     *
+     * @return array
+     */
+
+    public function providerSetMulti()
+    {
+        return array(
+            ['param1=value1&param2=value2', [], 'param1=value1&param2=value2'],
+            ['', ['param1' => 'value1', 'param2' => 'value2'], 'param1=value1&param2=value2'],
+            ['param1=value1&param2=value2', ['param3' => 'value3'], 'param1=value1&param2=value2&param3=value3'],
         );
     }
 }
