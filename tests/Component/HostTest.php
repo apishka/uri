@@ -51,6 +51,42 @@ class HostTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             ['example.com', 'example.com'],
+            [[null, 'example.com'], 'example.com'],
+            [['www', 'example.com'], 'www.example.com'],
+        );
+    }
+
+    /**
+     * Test is empty
+     *
+     * @dataProvider providerIsEmpty
+     *
+     * @param array  $data
+     * @param string $expected
+     */
+
+    public function testIsEmpty($data, $expected)
+    {
+        $host = $this->getHost($data);
+
+        $this->assertSame(
+            $expected,
+            $host->isEmpty()
+        );
+    }
+
+    /**
+     * Provider is empty
+     *
+     * @return array
+     */
+
+    public function providerIsEmpty()
+    {
+        return array(
+            ['', true],
+            [null, true],
+            ['example.com', false],
         );
     }
 }
