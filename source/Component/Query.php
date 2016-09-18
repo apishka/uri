@@ -194,7 +194,7 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function offsetGet($offset)
     {
-        return $this->_query[$offset];
+        return $this->_query[$offset] ?? null;
     }
 
     /**
