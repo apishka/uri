@@ -22,15 +22,15 @@ class UriTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test creation
+     * Test valid url
      *
-     * @dataProvider validUriProvider
+     * @dataProvider providerValidUri
      *
      * @param string $uri
      * @param string $expected
      */
 
-    public function testCreation($uri, $expected)
+    public function testValidUri($uri, $expected)
     {
         $uri = $this->getUri($uri);
 
@@ -41,12 +41,12 @@ class UriTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Valid uri provider
+     * Provider valid uri
      *
      * @return array
      */
 
-    public function validUriProvider()
+    public function providerValidUri()
     {
         return array(
             ['http://example.com/', 'http://example.com/'],
@@ -64,21 +64,53 @@ class UriTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test add query params
+     *
+     * @dataProvider providerAddQueryParams
+     *
+     * @param array $params
+     * @param string $expected
      */
 
-    public function testAddQueryParams()
+    public function testAddQueryParams($params, $expected)
     {
         $uri = $this->getUri('/some/path');
-        $uri->setQueryParams(
-            array(
-                'param1' => 'value1',
-                'param2' => 'value2',
-            )
-        );
+
+        $uri->setQueryParams($params);
 
         $this->assertSame(
-            '/some/path?param1=value1&param2=value2',
+            '/some/path' . $expected,
             (string) $uri
+        );
+    }
+
+    /**
+     * Provider add query params
+     *
+     * @return array
+     */
+
+    public function providerAddQueryParams()
+    {
+        return array(
+            array(
+                array(
+                    'param1' => 'value1',
+                    'param2' => 'value2',
+                ),
+                '?param1=value1&param2=value2'
+            ),
+            array(
+                array(
+                    'param1' => null,
+                ),
+                ''
+            ),
+            array(
+                array(
+                    'param1' => '',
+                ),
+                '?param1='
+            )
         );
     }
 
