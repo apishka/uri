@@ -24,7 +24,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     /**
      * Test valid url
      *
-     * @dataProvider providerValidUri
+     * @dataProvider providerTestValidUri
      *
      * @param string $uri
      * @param string $expected
@@ -46,7 +46,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
      * @return array
      */
 
-    public function providerValidUri()
+    public function providerTestValidUri()
     {
         return array(
             ['http://example.com/', 'http://example.com/'],
@@ -65,7 +65,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     /**
      * Test add query params
      *
-     * @dataProvider providerAddQueryParams
+     * @dataProvider providerTestAddQueryParams
      *
      * @param array $params
      * @param string $expected
@@ -89,7 +89,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
      * @return array
      */
 
-    public function providerAddQueryParams()
+    public function providerTestAddQueryParams()
     {
         return array(
             array(
