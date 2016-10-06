@@ -144,6 +144,8 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         return array(
             ['param1=value1&param2=value2', 'param3', 'value3', 'param1=value1&param2=value2&param3=value3'],
             ['param1=value1&param2=value2', 'param1', 'value1.1', 'param1=value1.1&param2=value2'],
+            ['', 'param1', '', 'param1='],
+            ['', 'param1', null, ''],
         );
     }
 
