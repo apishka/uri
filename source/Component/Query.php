@@ -266,6 +266,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
 
     public function isEmpty()
     {
-        return $this->__toString() !== '';
+        return $this->__toString() === '';
     }
 }
