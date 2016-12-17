@@ -1,4 +1,6 @@
-<?php namespace Apishka\Uri;
+<?php
+
+namespace Apishka\Uri;
 
 use Apishka\Uri\Component\Fragment;
 use Apishka\Uri\Component\Host;

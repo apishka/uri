@@ -1,4 +1,6 @@
-<?php namespace ApishkaTest\Uri\Component;
+<?php
+
+namespace ApishkaTest\Uri\Component;
 
 use Apishka\Uri\Component\Host;
 

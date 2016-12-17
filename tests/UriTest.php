@@ -1,4 +1,6 @@
-<?php namespace ApishkaTest\Uri;
+<?php
+
+namespace ApishkaTest\Uri;
 
 use Apishka\Uri\Uri;
 
@@ -67,7 +69,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider providerTestAddQueryParams
      *
-     * @param array $params
+     * @param array  $params
      * @param string $expected
      */
 
@@ -97,20 +99,20 @@ class UriTest extends \PHPUnit_Framework_TestCase
                     'param1' => 'value1',
                     'param2' => 'value2',
                 ),
-                '?param1=value1&param2=value2'
+                '?param1=value1&param2=value2',
             ),
             array(
                 array(
                     'param1' => null,
                 ),
-                ''
+                '',
             ),
             array(
                 array(
                     'param1' => '',
                 ),
-                '?param1='
-            )
+                '?param1=',
+            ),
         );
     }
 

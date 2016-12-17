@@ -1,4 +1,6 @@
-<?php namespace Apishka\Uri;
+<?php
+
+namespace Apishka\Uri;
 
 /**
  * Provider abstract

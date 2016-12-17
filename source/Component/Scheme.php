@@ -1,4 +1,6 @@
-<?php namespace Apishka\Uri\Component;
+<?php
+
+namespace Apishka\Uri\Component;
 
 use Apishka\Uri\ComponentAbstract;
 

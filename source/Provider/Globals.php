@@ -1,4 +1,6 @@
-<?php namespace Apishka\Uri\Provider;
+<?php
+
+namespace Apishka\Uri\Provider;
 
 use Apishka\Uri\ProviderAbstract;
 

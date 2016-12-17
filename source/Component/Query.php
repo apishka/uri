@@ -1,4 +1,6 @@
-<?php namespace Apishka\Uri\Component;
+<?php
+
+namespace Apishka\Uri\Component;
 
 use Apishka\Uri\ComponentAbstract;
 
@@ -255,6 +257,7 @@ class Query extends ComponentAbstract implements \ArrayAccess
         }
 
         $key = $offset;
+
         return $this->_query;
     }
 
