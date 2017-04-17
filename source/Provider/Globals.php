@@ -91,7 +91,7 @@ class Globals extends ProviderAbstract
      *
      * @param array $server
      *
-     * @throws InvalidArgumentException If the host can not be detected
+     * @throws \InvalidArgumentException If the host can not be detected
      *
      * @return string
      */
@@ -104,7 +104,7 @@ class Globals extends ProviderAbstract
         if (isset($server['SERVER_ADDR']))
             return (string) $server['SERVER_ADDR'];
 
-        throw new InvalidArgumentException('Host could not be detected');
+        throw new \InvalidArgumentException('Host could not be detected');
     }
 
     /**
