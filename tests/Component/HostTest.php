@@ -8,7 +8,7 @@ use Apishka\Uri\Component\Host;
  * Apishka test form form abstract test
  */
 
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get host

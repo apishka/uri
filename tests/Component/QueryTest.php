@@ -8,7 +8,7 @@ use Apishka\Uri\Component\Query;
  * Apishka test form form abstract test
  */
 
-class QueryTest extends \PHPUnit_Framework_TestCase
+class QueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get host

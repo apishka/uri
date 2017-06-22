@@ -8,7 +8,7 @@ use Apishka\Uri\Uri;
  * Apishka test form form abstract test
  */
 
-class UriTest extends \PHPUnit_Framework_TestCase
+class UriTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Get uri
