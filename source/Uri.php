@@ -13,6 +13,9 @@ use Apishka\Uri\Component\User;
 
 /**
  * Uri
+ *
+ * @method static static fromUri(mixed $uri, array $options = [])
+ * @method static static fromProvider(Apishka\Uri\ProviderAbstract $provider, array $options = [])
  */
 class Uri
 {
@@ -149,7 +152,7 @@ class Uri
      * @param mixed $uri
      * @param array $options
      *
-     * @return Uri this
+     * @return $this
      */
     protected function __apishkaFromUri($uri, array $options = [])
     {
@@ -165,7 +168,7 @@ class Uri
      * @param mixed $provider
      * @param array $options
      *
-     * @return Uri this
+     * @return $this
      */
     protected function __apishkaFromProvider($provider = null, array $options = [])
     {
@@ -180,7 +183,7 @@ class Uri
      *
      * @param string $uri
      *
-     * @return Uri
+     * @return $this
      */
     protected function parse($uri)
     {
@@ -234,7 +237,7 @@ class Uri
      *
      * @param mixed $scheme
      *
-     * @return Scheme
+     * @return $this
      */
     public function setScheme($scheme)
     {
@@ -261,7 +264,7 @@ class Uri
      *
      * @param mixed $host
      *
-     * @return Host
+     * @return $this
      */
     public function setHost($host)
     {
@@ -288,7 +291,7 @@ class Uri
      *
      * @param mixed $user
      *
-     * @return User
+     * @return $this
      */
     public function setUser($user)
     {
@@ -315,7 +318,7 @@ class Uri
      *
      * @param mixed $pass
      *
-     * @return Pass
+     * @return $this
      */
     public function setPass($pass)
     {
@@ -342,7 +345,7 @@ class Uri
      *
      * @param mixed $port
      *
-     * @return Port
+     * @return $this
      */
     public function setPort($port)
     {
@@ -369,7 +372,7 @@ class Uri
      *
      * @param mixed $path
      *
-     * @return Path
+     * @return $this
      */
     public function setPath($path)
     {
@@ -396,7 +399,7 @@ class Uri
      *
      * @param mixed $query
      *
-     * @return Query
+     * @return $this
      */
     public function setQuery($query)
     {
@@ -423,7 +426,7 @@ class Uri
      *
      * @param mixed $fragment
      *
-     * @return Fragment
+     * @return $this
      */
     public function setFragment($fragment)
     {
@@ -496,7 +499,7 @@ class Uri
      * @param mixed $key
      * @param mixed $value
      *
-     * @return Uri
+     * @return $this
      */
     public function setQueryParam($key, $value)
     {
@@ -510,7 +513,7 @@ class Uri
      *
      * @param array $values
      *
-     * @return Uri
+     * @return $this
      */
     public function setQueryParams(array $values)
     {
@@ -524,7 +527,7 @@ class Uri
      *
      * @param mixed $key
      *
-     * @return Uri
+     * @return $this
      */
     public function delQueryParam($key)
     {
@@ -538,7 +541,7 @@ class Uri
      *
      * @param array $values
      *
-     * @return Uri
+     * @return $this
      */
     public function applyQueryParams(array $values)
     {
