@@ -7,7 +7,6 @@ use Apishka\Uri\Uri;
 /**
  * Apishka test form form abstract test
  */
-
 class UriTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -17,7 +16,6 @@ class UriTest extends \PHPUnit\Framework\TestCase
      *
      * @return Uri
      */
-
     protected function getUri($uri)
     {
         return Uri::fromUri($uri);
@@ -31,7 +29,6 @@ class UriTest extends \PHPUnit\Framework\TestCase
      * @param string $uri
      * @param string $expected
      */
-
     public function testValidUri($uri, $expected)
     {
         $uri = $this->getUri($uri);
@@ -47,10 +44,9 @@ class UriTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerTestValidUri()
     {
-        return array(
+        return [
             ['http://example.com/', 'http://example.com/'],
             ['/', '/'],
             ['?#', ''],
@@ -61,7 +57,7 @@ class UriTest extends \PHPUnit\Framework\TestCase
             ['HTTP://EXAMPLE.COM/path', 'http://example.com/path'],
             ['?test=xxx', '?test=xxx'],
             ['#hello', '#hello'],
-        );
+        ];
     }
 
     /**
@@ -72,7 +68,6 @@ class UriTest extends \PHPUnit\Framework\TestCase
      * @param array  $params
      * @param string $expected
      */
-
     public function testAddQueryParams($params, $expected)
     {
         $uri = $this->getUri('/some/path');
@@ -90,36 +85,34 @@ class UriTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerTestAddQueryParams()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'param1' => 'value1',
                     'param2' => 'value2',
-                ),
+                ],
                 '?param1=value1&param2=value2',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'param1' => null,
-                ),
+                ],
                 '',
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'param1' => '',
-                ),
+                ],
                 '?param1=',
-            ),
-        );
+            ],
+        ];
     }
 
     /**
      * Test add query params
      */
-
     public function testFullUri()
     {
         $uri = $this

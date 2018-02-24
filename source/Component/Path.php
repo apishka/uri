@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Path
  */
-
 class Path extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Path extends ComponentAbstract
      *
      * @var string
      */
-
     private $_path;
 
     /**
@@ -24,8 +22,7 @@ class Path extends ComponentAbstract
      * @param string $path
      * @param array  $options
      */
-
-    public function __construct($path, $options = array())
+    public function __construct($path, $options = [])
     {
         $this->setOptions($options);
         $this->parse($path);
@@ -38,7 +35,6 @@ class Path extends ComponentAbstract
      *
      * @return Path this
      */
-
     protected function parse($path)
     {
         $this->_path = (string) $path;
@@ -51,7 +47,6 @@ class Path extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_path;
@@ -62,7 +57,6 @@ class Path extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_path === '';

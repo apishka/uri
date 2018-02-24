@@ -7,7 +7,6 @@ use Apishka\Uri\Component\Host;
 /**
  * Apishka test form form abstract test
  */
-
 class HostTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -18,8 +17,7 @@ class HostTest extends \PHPUnit\Framework\TestCase
      *
      * @return Host
      */
-
-    protected function getHost($host, $options = array())
+    protected function getHost($host, $options = [])
     {
         return new Host($host, $options);
     }
@@ -32,7 +30,6 @@ class HostTest extends \PHPUnit\Framework\TestCase
      * @param string $host
      * @param string $expected
      */
-
     public function testCreation($host, $expected)
     {
         $host = $this->getHost($host);
@@ -48,14 +45,13 @@ class HostTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function validHostProvider()
     {
-        return array(
+        return [
             ['example.com', 'example.com'],
             [[null, 'example.com'], 'example.com'],
             [['www', 'example.com'], 'www.example.com'],
-        );
+        ];
     }
 
     /**
@@ -66,7 +62,6 @@ class HostTest extends \PHPUnit\Framework\TestCase
      * @param array  $data
      * @param string $expected
      */
-
     public function testIsEmpty($data, $expected)
     {
         $host = $this->getHost($data);
@@ -82,13 +77,12 @@ class HostTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerIsEmpty()
     {
-        return array(
+        return [
             ['', true],
             [null, true],
             ['example.com', false],
-        );
+        ];
     }
 }

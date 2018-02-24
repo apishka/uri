@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Query
  */
-
 class Query extends ComponentAbstract implements \ArrayAccess
 {
     /**
@@ -15,8 +14,7 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @var string
      */
-
-    private $_query = array();
+    private $_query = [];
 
     /**
      * Construct
@@ -24,8 +22,7 @@ class Query extends ComponentAbstract implements \ArrayAccess
      * @param string $query
      * @param array  $options
      */
-
-    public function __construct($query, $options = array())
+    public function __construct($query, $options = [])
     {
         $this->setOptions($options);
         $this->parse($query);
@@ -38,7 +35,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return Query this
      */
-
     protected function parse($query)
     {
         if (is_array($query))
@@ -58,7 +54,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) http_build_query($this->__toArray());
@@ -69,7 +64,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return array
      */
-
     public function __toArray()
     {
         return $this->_query;
@@ -83,7 +77,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return Query
      */
-
     public function set($key, $value)
     {
         $this->offsetSet($key, $value);
@@ -98,7 +91,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return Query
      */
-
     public function setMulti(array $values)
     {
         foreach ($values as $key => $value)
@@ -114,7 +106,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return mixed
      */
-
     public function get($key)
     {
         return $this->offsetGet($key);
@@ -127,7 +118,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return bool
      */
-
     public function has($key)
     {
         return $this->offsetExists($key);
@@ -140,7 +130,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return Query
      */
-
     public function del($key)
     {
         $this->offsetUnset($key);
@@ -155,7 +144,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return Query
      */
-
     public function apply(array $values)
     {
         foreach ($values as $key => $value)
@@ -180,7 +168,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return bool
      */
-
     public function offsetExists($offset)
     {
         $parent = &$this->prepareCompositeParent($offset, $key);
@@ -195,7 +182,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return mixed
      */
-
     public function offsetGet($offset)
     {
         $parent = &$this->prepareCompositeParent($offset, $key);
@@ -209,7 +195,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      * @param mixed $offset
      * @param mixed $value
      */
-
     public function offsetSet($offset, $value)
     {
         $parent = &$this->prepareCompositeParent($offset, $key);
@@ -222,7 +207,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @param mixed $offset
      */
-
     public function offsetUnset($offset)
     {
         $parent = &$this->prepareCompositeParent($offset, $key);
@@ -239,7 +223,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return &array
      */
-
     protected function &prepareCompositeParent($offset, &$key)
     {
         if (is_array($offset))
@@ -266,7 +249,6 @@ class Query extends ComponentAbstract implements \ArrayAccess
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->__toString() === '';

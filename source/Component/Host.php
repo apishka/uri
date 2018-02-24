@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Host
  */
-
 class Host extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Host extends ComponentAbstract
      *
      * @var string
      */
-
     private $_host;
 
     /**
@@ -24,8 +22,7 @@ class Host extends ComponentAbstract
      * @param mixed $host
      * @param array $options
      */
-
-    public function __construct($host, $options = array())
+    public function __construct($host, $options = [])
     {
         $this->setOptions($options);
         $this->parse($host);
@@ -36,7 +33,6 @@ class Host extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_host === '';
@@ -49,7 +45,6 @@ class Host extends ComponentAbstract
      *
      * @return Host this
      */
-
     protected function parse($host)
     {
         if (is_array($host))
@@ -70,7 +65,6 @@ class Host extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_host;

@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Pass
  */
-
 class Pass extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Pass extends ComponentAbstract
      *
      * @var string
      */
-
     private $_pass;
 
     /**
@@ -24,8 +22,7 @@ class Pass extends ComponentAbstract
      * @param string $pass
      * @param array  $options
      */
-
-    public function __construct($pass, $options = array())
+    public function __construct($pass, $options = [])
     {
         $this->setOptions($options);
         $this->parse($pass);
@@ -38,7 +35,6 @@ class Pass extends ComponentAbstract
      *
      * @return Pass this
      */
-
     protected function parse($pass)
     {
         $this->_pass = (string) $pass;
@@ -51,7 +47,6 @@ class Pass extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_pass;
@@ -62,7 +57,6 @@ class Pass extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_pass === '';

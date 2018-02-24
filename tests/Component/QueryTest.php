@@ -7,7 +7,6 @@ use Apishka\Uri\Component\Query;
 /**
  * Apishka test form form abstract test
  */
-
 class QueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -18,8 +17,7 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return Host
      */
-
-    protected function getQuery($query, $options = array())
+    protected function getQuery($query, $options = [])
     {
         return new Query($query, $options);
     }
@@ -32,7 +30,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $data
      * @param string $expected
      */
-
     public function testToString($data, $expected)
     {
         $query = $this->getQuery($data);
@@ -48,13 +45,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerToString()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', 'param1=value1&param2=value2'],
             [['param1' => 'value1', 'param2' => 'value2'], 'param1=value1&param2=value2'],
-        );
+        ];
     }
 
     /**
@@ -65,7 +61,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $data
      * @param string $expected
      */
-
     public function testToArray($data, $expected)
     {
         $query = $this->getQuery($data);
@@ -81,12 +76,11 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerToArray()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', ['param1' => 'value1', 'param2' => 'value2']],
-        );
+        ];
     }
 
     /**
@@ -99,7 +93,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param mixed  $value
      * @param string $expected
      */
-
     public function testSet($data, $key, $value, $expected)
     {
         $query = $this->getQuery($data);
@@ -122,7 +115,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param mixed  $value
      * @param string $expected
      */
-
     public function testOffsetSet($data, $key, $value, $expected)
     {
         $query = $this->getQuery($data);
@@ -140,15 +132,14 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerSet()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', 'param3', 'value3', 'param1=value1&param2=value2&param3=value3'],
             ['param1=value1&param2=value2', 'param1', 'value1.1', 'param1=value1.1&param2=value2'],
             ['', 'param1', '', 'param1='],
             ['', 'param1', null, ''],
-        );
+        ];
     }
 
     /**
@@ -161,7 +152,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param mixed  $value
      * @param string $expected
      */
-
     public function testSetComposite($data, $key, $value, $expected)
     {
         $query = $this->getQuery($data);
@@ -179,13 +169,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerSetComposite()
     {
-        return array(
+        return [
             ['param[1]=value1&param[2]=value2', ['param', '1'], 'value1.1', 'param%5B1%5D=value1.1&param%5B2%5D=value2'],
             ['param[1]=value1&param[2]=value2', ['param'], 'value', 'param=value'],
-        );
+        ];
     }
 
     /**
@@ -197,7 +186,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testGet($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -217,7 +205,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testOffsetGet($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -233,13 +220,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerGet()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', 'param3', null],
             ['param1=value1&param2=value2', 'param1', 'value1'],
-        );
+        ];
     }
 
     /**
@@ -251,7 +237,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param array  $key
      * @param string $expected
      */
-
     public function testGetComposite($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -267,13 +252,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerGetComposite()
     {
-        return array(
+        return [
             ['param[1]=value1&param[2]=value2', ['param', '1'], 'value1'],
             ['param[1]=value1&param[2]=value2', ['param'], ['1' => 'value1', '2' => 'value2']],
-        );
+        ];
     }
 
     /**
@@ -285,7 +269,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testDel($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -307,7 +290,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testOffsetUnset($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -325,13 +307,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerDel()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', 'param3', 'param1=value1&param2=value2'],
             ['param1=value1&param2=value2', 'param1', 'param2=value2'],
-        );
+        ];
     }
 
     /**
@@ -343,7 +324,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param array  $key
      * @param string $expected
      */
-
     public function testDelComposite($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -361,17 +341,16 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerDelComposite()
     {
-        return array(
+        return [
             ['param[1]=value1&param[2]=value2', ['param', '1'], 'param%5B2%5D=value2'],
             ['param[min]=value1&param[max]=value2', ['param'], ''],
             ['param[min]=value1&param[max]=value2', ['param', 'max'], 'param%5Bmin%5D=value1'],
             ['param[]=value1&param[]=value2', ['param', 0], 'param%5B1%5D=value2'],
             ['param=value1', [], 'param=value1'],
             ['param=value1', ['foo'], 'param=value1'],
-        );
+        ];
     }
 
     /**
@@ -383,7 +362,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testHas($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -403,7 +381,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param string $expected
      */
-
     public function testOffsetExists($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -419,13 +396,12 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerHas()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', 'param3', false],
             ['param1=value1&param2=value2', 'param1', true],
-        );
+        ];
     }
 
     /**
@@ -437,7 +413,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param array  $key
      * @param string $expected
      */
-
     public function testHasComposite($data, $key, $expected)
     {
         $query = $this->getQuery($data);
@@ -453,14 +428,13 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerHasComposite()
     {
-        return array(
+        return [
             ['param[1]=value1&param[2]=value2', ['param', '1'], true],
             ['param[1]=value1&param[2]=value2', ['param', 'min'], false],
             ['param[]=value1&param[]=value2', ['param', '0'], true],
-        );
+        ];
     }
 
     /**
@@ -471,7 +445,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param array  $data
      * @param string $expected
      */
-
     public function testIsEmpty($data, $expected)
     {
         $query = $this->getQuery($data);
@@ -487,14 +460,13 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerIsEmpty()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', false],
             ['', true],
             [[], true],
-        );
+        ];
     }
 
     /**
@@ -506,7 +478,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param mixed  $values
      * @param string $expected
      */
-
     public function testSetMulti($data, $values, $expected)
     {
         $query = $this->getQuery($data);
@@ -524,14 +495,13 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerSetMulti()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', [], 'param1=value1&param2=value2'],
             ['', ['param1' => 'value1', 'param2' => 'value2'], 'param1=value1&param2=value2'],
             ['param1=value1&param2=value2', ['param3' => 'value3'], 'param1=value1&param2=value2&param3=value3'],
-        );
+        ];
     }
 
     /**
@@ -543,7 +513,6 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      * @param array  $values
      * @param string $expected
      */
-
     public function testApply($data, $values, $expected)
     {
         $query = $this->getQuery($data);
@@ -561,11 +530,10 @@ class QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return array
      */
-
     public function providerApply()
     {
-        return array(
+        return [
             ['param1=value1&param2=value2', ['param1' => false, 'param2' => 'value2.2'], 'param2=value2.2'],
-        );
+        ];
     }
 }

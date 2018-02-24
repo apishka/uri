@@ -7,7 +7,6 @@ use Apishka\Uri\ProviderAbstract;
 /**
  * Globals
  */
-
 class Globals extends ProviderAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Globals extends ProviderAbstract
      *
      * @var array
      */
-
     private $_server = null;
 
     /**
@@ -23,7 +21,6 @@ class Globals extends ProviderAbstract
      *
      * @param mixed $server
      */
-
     public function __construct($server = null)
     {
         $this->_server = $server ?? $_SERVER;
@@ -34,7 +31,6 @@ class Globals extends ProviderAbstract
      *
      * @param array $server
      */
-
     public function getUri()
     {
         return $this->fetchServerScheme($this->_server)
@@ -53,7 +49,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerScheme(array $server)
     {
         $server += ['HTTPS' => ''];
@@ -69,7 +64,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerUserInfo(array $server)
     {
         $server += ['PHP_AUTH_USER' => null, 'PHP_AUTH_PW' => null, 'HTTP_AUTHORIZATION' => null];
@@ -95,7 +89,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerHost(array $server)
     {
         if (isset($server['HTTP_HOST']))
@@ -116,7 +109,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerHostname($host)
     {
         preg_match(',^(([^(\[\])]*):)?(?<host>.*)?$,', strrev($host), $matches);
@@ -131,7 +123,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerPort(array $server)
     {
         $server += ['HTTP_HOST' => '', 'SERVER_PORT' => ''];
@@ -148,7 +139,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     public function fetchServerRequestUri(array $server)
     {
         if (isset($server['REQUEST_URI']))
@@ -169,7 +159,6 @@ class Globals extends ProviderAbstract
      *
      * @return string
      */
-
     protected function buildUserInfo($user, $pass)
     {
         $userinfo = $user;

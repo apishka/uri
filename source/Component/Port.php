@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Port
  */
-
 class Port extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Port extends ComponentAbstract
      *
      * @var string
      */
-
     private $_port;
 
     /**
@@ -24,8 +22,7 @@ class Port extends ComponentAbstract
      * @param string $port
      * @param array  $options
      */
-
-    public function __construct($port, $options = array())
+    public function __construct($port, $options = [])
     {
         $this->setOptions($options);
         $this->parse($port);
@@ -38,7 +35,6 @@ class Port extends ComponentAbstract
      *
      * @return Port this
      */
-
     protected function parse($port)
     {
         $this->_port = (int) $port;
@@ -51,7 +47,6 @@ class Port extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_port;
@@ -62,7 +57,6 @@ class Port extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_port === 0;

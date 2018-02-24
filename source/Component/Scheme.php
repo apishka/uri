@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Scheme
  */
-
 class Scheme extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Scheme extends ComponentAbstract
      *
      * @var string
      */
-
     private $_scheme = null;
 
     /**
@@ -24,8 +22,7 @@ class Scheme extends ComponentAbstract
      * @param string $scheme
      * @param array  $options
      */
-
-    public function __construct($scheme, $options = array())
+    public function __construct($scheme, $options = [])
     {
         $this->setOptions($options);
         $this->parse($scheme);
@@ -38,7 +35,6 @@ class Scheme extends ComponentAbstract
      *
      * @return Scheme this
      */
-
     protected function parse($scheme)
     {
         $this->_scheme = strtolower($scheme);
@@ -51,7 +47,6 @@ class Scheme extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_scheme;
@@ -62,19 +57,17 @@ class Scheme extends ComponentAbstract
      *
      * @return array
      */
-
     public function getSchemePorts()
     {
-        return array(
+        return [
             'http'  => 80,
             'https' => 443,
-        );
+        ];
     }
 
     /**
      * Get default port
      */
-
     public function getDefaultPort()
     {
         $ports = $this->getSchemePorts();
@@ -92,7 +85,6 @@ class Scheme extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isDefaultPort($port)
     {
         if ($this->getDefaultPort() !== false)
@@ -106,7 +98,6 @@ class Scheme extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_scheme === '';

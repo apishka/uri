@@ -5,13 +5,11 @@ namespace Apishka\Uri;
 /**
  * Provider abstract
  */
-
 abstract class ProviderAbstract
 {
     /**
      * Traits
      */
-
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
@@ -19,7 +17,6 @@ abstract class ProviderAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return $this->getUri();

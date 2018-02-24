@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * Fragment
  */
-
 class Fragment extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class Fragment extends ComponentAbstract
      *
      * @var string
      */
-
     private $_fragment;
 
     /**
@@ -24,8 +22,7 @@ class Fragment extends ComponentAbstract
      * @param string $fragment
      * @param array  $options
      */
-
-    public function __construct($fragment, $options = array())
+    public function __construct($fragment, $options = [])
     {
         $this->setOptions($options);
         $this->parse($fragment);
@@ -38,7 +35,6 @@ class Fragment extends ComponentAbstract
      *
      * @return Fragment this
      */
-
     protected function parse($fragment)
     {
         $this->_fragment = (string) $fragment;
@@ -51,7 +47,6 @@ class Fragment extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_fragment;
@@ -62,7 +57,6 @@ class Fragment extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_fragment === '';

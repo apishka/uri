@@ -14,13 +14,11 @@ use Apishka\Uri\Component\User;
 /**
  * Uri
  */
-
 class Uri
 {
     /**
      * Traits
      */
-
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
@@ -28,7 +26,6 @@ class Uri
      *
      * @var Scheme
      */
-
     private $_scheme = null;
 
     /**
@@ -36,7 +33,6 @@ class Uri
      *
      * @var Host
      */
-
     private $_host = null;
 
     /**
@@ -44,7 +40,6 @@ class Uri
      *
      * @var User
      */
-
     private $_user = null;
 
     /**
@@ -52,7 +47,6 @@ class Uri
      *
      * @var Pass
      */
-
     private $_pass = null;
 
     /**
@@ -60,7 +54,6 @@ class Uri
      *
      * @var Port
      */
-
     private $_port = null;
 
     /**
@@ -68,7 +61,6 @@ class Uri
      *
      * @var Path
      */
-
     private $_path = null;
 
     /**
@@ -76,7 +68,6 @@ class Uri
      *
      * @var Query
      */
-
     private $_query = null;
 
     /**
@@ -84,7 +75,6 @@ class Uri
      *
      * @var Fragment
      */
-
     private $_fragment = null;
 
     /**
@@ -92,7 +82,6 @@ class Uri
      *
      * @var bool
      */
-
     private $_is_parsed = false;
 
     /**
@@ -100,15 +89,13 @@ class Uri
      *
      * @var array
      */
-
-    private $_options = array();
+    private $_options = [];
 
     /**
      * Returns static prefixes
      *
      * @return string
      */
-
     public function __apishkaGetPrefixes()
     {
         return 'from';
@@ -123,7 +110,6 @@ class Uri
      *
      * @return mixed
      */
-
     protected static function __apishkaFrom(array $data, $name, array $arguments)
     {
         return (new $data['class']())
@@ -138,20 +124,19 @@ class Uri
      *
      * @return Uri
      */
-
     protected function setOptions(array $options)
     {
         $this->_options = array_replace(
-            array(
-                'scheme'   => array(),
-                'host'     => array(),
-                'port'     => array(),
-                'user'     => array(),
-                'pass'     => array(),
-                'path'     => array(),
-                'query'    => array(),
-                'fragment' => array(),
-            ),
+            [
+                'scheme'   => [],
+                'host'     => [],
+                'port'     => [],
+                'user'     => [],
+                'pass'     => [],
+                'path'     => [],
+                'query'    => [],
+                'fragment' => [],
+            ],
             $options
         );
 
@@ -166,8 +151,7 @@ class Uri
      *
      * @return Uri this
      */
-
-    protected function __apishkaFromUri($uri, array $options = array())
+    protected function __apishkaFromUri($uri, array $options = [])
     {
         $this->setOptions($options);
         $this->parse($uri);
@@ -183,8 +167,7 @@ class Uri
      *
      * @return Uri this
      */
-
-    protected function __apishkaFromProvider($provider = null, array $options = array())
+    protected function __apishkaFromProvider($provider = null, array $options = [])
     {
         if ($provider === null)
             $provider = Provider\Globals::apishka();
@@ -199,7 +182,6 @@ class Uri
      *
      * @return Uri
      */
-
     protected function parse($uri)
     {
         if (!$this->_is_parsed)
@@ -211,7 +193,7 @@ class Uri
                 throw new \InvalidArgumentException('Can\'t parse ' . var_export($uri, true));
 
             $data = array_replace(
-                array(
+                [
                     'scheme'   => null,
                     'host'     => null,
                     'port'     => null,
@@ -220,7 +202,7 @@ class Uri
                     'path'     => null,
                     'query'    => null,
                     'fragment' => null,
-                ),
+                ],
                 $data
             );
 
@@ -242,7 +224,6 @@ class Uri
      *
      * @return Scheme
      */
-
     public function getScheme()
     {
         return $this->_scheme;
@@ -255,7 +236,6 @@ class Uri
      *
      * @return Scheme
      */
-
     public function setScheme($scheme)
     {
         $this->_scheme = ($scheme instanceof Scheme)
@@ -271,7 +251,6 @@ class Uri
      *
      * @return Host
      */
-
     public function getHost()
     {
         return $this->_host;
@@ -284,7 +263,6 @@ class Uri
      *
      * @return Host
      */
-
     public function setHost($host)
     {
         $this->_host = ($host instanceof Host)
@@ -300,7 +278,6 @@ class Uri
      *
      * @return User
      */
-
     public function getUser()
     {
         return $this->_user;
@@ -313,7 +290,6 @@ class Uri
      *
      * @return User
      */
-
     public function setUser($user)
     {
         $this->_user = ($user instanceof User)
@@ -329,7 +305,6 @@ class Uri
      *
      * @return Pass
      */
-
     public function getPass()
     {
         return $this->_pass;
@@ -342,7 +317,6 @@ class Uri
      *
      * @return Pass
      */
-
     public function setPass($pass)
     {
         $this->_pass = ($pass instanceof Pass)
@@ -358,7 +332,6 @@ class Uri
      *
      * @return Port
      */
-
     public function getPort()
     {
         return $this->_port;
@@ -371,7 +344,6 @@ class Uri
      *
      * @return Port
      */
-
     public function setPort($port)
     {
         $this->_port = ($port instanceof Port)
@@ -387,7 +359,6 @@ class Uri
      *
      * @return Path
      */
-
     public function getPath()
     {
         return $this->_path;
@@ -400,7 +371,6 @@ class Uri
      *
      * @return Path
      */
-
     public function setPath($path)
     {
         $this->_path = ($path instanceof Path)
@@ -416,7 +386,6 @@ class Uri
      *
      * @return Query
      */
-
     public function getQuery()
     {
         return $this->_query;
@@ -429,7 +398,6 @@ class Uri
      *
      * @return Query
      */
-
     public function setQuery($query)
     {
         $this->_query = ($query instanceof Query)
@@ -445,7 +413,6 @@ class Uri
      *
      * @return Fragment
      */
-
     public function getFragment()
     {
         return $this->_fragment;
@@ -458,7 +425,6 @@ class Uri
      *
      * @return Fragment
      */
-
     public function setFragment($fragment)
     {
         $this->_fragment = ($fragment instanceof Fragment)
@@ -474,7 +440,6 @@ class Uri
      *
      * @return string
      */
-
     public function __toString()
     {
         $uri = '';
@@ -509,7 +474,6 @@ class Uri
      *
      * @return string
      */
-
     public function getRelative()
     {
         $relative = '';
@@ -534,7 +498,6 @@ class Uri
      *
      * @return Uri
      */
-
     public function setQueryParam($key, $value)
     {
         $this->getQuery()->set($key, $value);
@@ -549,7 +512,6 @@ class Uri
      *
      * @return Uri
      */
-
     public function setQueryParams(array $values)
     {
         $this->getQuery()->setMulti($values);
@@ -564,7 +526,6 @@ class Uri
      *
      * @return Uri
      */
-
     public function delQueryParam($key)
     {
         $this->getQuery()->del($key);
@@ -579,7 +540,6 @@ class Uri
      *
      * @return Uri
      */
-
     public function applyQueryParams(array $values)
     {
         $this->getQuery()->apply($values);

@@ -7,7 +7,6 @@ use Apishka\Uri\ComponentAbstract;
 /**
  * User
  */
-
 class User extends ComponentAbstract
 {
     /**
@@ -15,7 +14,6 @@ class User extends ComponentAbstract
      *
      * @var string
      */
-
     private $_user;
 
     /**
@@ -24,8 +22,7 @@ class User extends ComponentAbstract
      * @param string $user
      * @param array  $options
      */
-
-    public function __construct($user, $options = array())
+    public function __construct($user, $options = [])
     {
         $this->setOptions($options);
         $this->parse($user);
@@ -38,7 +35,6 @@ class User extends ComponentAbstract
      *
      * @return User this
      */
-
     protected function parse($user)
     {
         $this->_user = (string) $user;
@@ -51,7 +47,6 @@ class User extends ComponentAbstract
      *
      * @return string
      */
-
     public function __toString()
     {
         return (string) $this->_user;
@@ -62,7 +57,6 @@ class User extends ComponentAbstract
      *
      * @return bool
      */
-
     public function isEmpty()
     {
         return $this->_user === '';

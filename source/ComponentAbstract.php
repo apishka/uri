@@ -5,13 +5,11 @@ namespace Apishka\Uri;
 /**
  * Component abstract
  */
-
 abstract class ComponentAbstract
 {
     /**
      * Traits
      */
-
     use \Apishka\EasyExtend\Helper\ByClassNameTrait;
 
     /**
@@ -19,8 +17,7 @@ abstract class ComponentAbstract
      *
      * @var array
      */
-
-    protected $_options = array();
+    protected $_options = [];
 
     /**
      * Set options
@@ -29,7 +26,6 @@ abstract class ComponentAbstract
      *
      * @return ComponentAbstract this
      */
-
     protected function setOptions($options)
     {
         $this->_options = $options;
@@ -40,6 +36,5 @@ abstract class ComponentAbstract
      *
      * @return bool
      */
-
     abstract public function isEmpty();
 }
